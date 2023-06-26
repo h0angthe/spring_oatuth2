@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--=============== REMIXICONS ===============-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="../static/assets/css/styles.css" />
+
+    <title>Responsive login form</title>
+</head>
+<body>
+<div class="container">
+    <div class="login">
+        <div class="login__content">
+            <img class="login__img" src="../static/assets/img/bg-login.png" alt="Login image" />
+
+            <form class="login__form">
+                <div>
+                    <h1 class="login__title">
+                        <span>Sign</span> Up
+                    </h1>
+                </div>
+
+                <div>
+                    <div class="login__inputs">
+                        <div>
+                            <label for="first_name" class="login__label">Họ </label>
+                            <input class="login__input" type="text" id="first_name" placeholder="Nhập Họ" required />
+                        </div>
+                        <div>
+                            <label for="last_name" class="login__label">Tên</label>
+                            <input class="login__input" type="text" id="last_name" placeholder="Nhập Tên" required />
+                        </div>
+                        <div>
+                            <label for="email" class="login__label">Email</label>
+                            <input class="login__input" type="email" id="email" placeholder="Nhập email" required />
+                        </div>
+                        <div>
+                            <label for="password1" class="login__label">Mật khẩu</label>
+                            <div class="login__box">
+                                <input class="login__input" type="password" id="password1" placeholder="Nhập mật khẩu" required />
+                                <i class="ri-eye-off-line login__eye" id="input-icon1"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="password" class="login__label">Nhập lại mật khẩu</label>
+                            <div class="login__box">
+                                <input class="login__input" type="password" id="password" placeholder="Nhập lại mật khẩu" required />
+                                <i class="ri-eye-off-line login__eye" id="input-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="login__buttons">
+                        <button class="login__button" id="btn_signin">Sign Up</button>
+                        <!--                        <button class="login__button login__button-ghost">Sign Up</button>-->
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--=============== MAIN JS ===============-->
+<!--<script src="../static/assets/js/main.js"></script>-->
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script>
+    $(document).ready(function () {
+
+    })
+    function signin(){
+        $("#btn_signin").click(function (){
+            let firstname = $("#first_name").val();
+            let lastname = $("#last_name").val();
+            let email = $("#email").val();
+            let pass = $("#password").val();
+            let pass1 = $("#password1").val();
+
+            if (!firstname){
+                alert("Vui lòng nhập đầy đủ thông tin !!!");
+                return;
+            }
+            if (!lastname){
+                alert("Vui lòng nhập đầy đủ thông tin !!!");
+                return;
+            }
+            if (!email){
+                alert("Vui lòng nhập đầy đủ thông tin !!!");
+                return;
+            }
+            if (!pass && !pass1){
+                alert("Vui lòng nhập đầy đủ thông tin !!!");
+                return;
+            }
+            if (pass != pass1){
+                alert("Nhập lại mật khẩu không chính xác !!!");
+                return;
+            }
+
+            let data ={
+                firstname: firstname,
+                lastname: lastname,
+                email: email,
+                pass: pass
+            }
+            $.ajax({
+                url: "/api/registration",
+                type: "POST",
+                contentType: "application/json; charset=UTF-8",
+                data: JSON.stringify(data)
+            })
+                .done(function (result) {
+
+                })
+                .fail(function (xhr, status, errorThrown) {
+                    console.log("Error: ", errorThrown);
+                    console.log("Status: ", status);
+                    console.dir(xhr);
+                });
+        })
+    }
+</script>
+
+<script type="text/javascript"
+                src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+</body>
+</html>

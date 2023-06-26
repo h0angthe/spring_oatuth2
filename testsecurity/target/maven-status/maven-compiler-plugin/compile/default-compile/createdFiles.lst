@@ -1,0 +1,6 @@
+com\example\testsecurity\infra\repository\UserRepository.class
+com\example\testsecurity\rest\model\InputCreateUser.class
+com\example\testsecurity\infra\entity\User.class
+com\example\testsecurity\rest\controller\UserController.class
+com\example\testsecurity\service\UserService.class
+com\example\testsecurity\TestsecurityApplication.class
