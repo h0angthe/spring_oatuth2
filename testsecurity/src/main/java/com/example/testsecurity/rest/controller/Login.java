@@ -8,8 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 public class Login {
-    @GetMapping("/")
+    @GetMapping("/Login")
     String getLogin(Model model) {
         return "Login";
+    }
+
+    @GetMapping("/loginSuccess")
+    String getHome(Model model) {
+        return "loginSuccess";
     }
 }
