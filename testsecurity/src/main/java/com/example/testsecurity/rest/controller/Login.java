@@ -13,8 +13,12 @@ public class Login {
         return "Login";
     }
 
-    @GetMapping("/loginSuccess")
+    @GetMapping("/")
     String getHome(Model model) {
-        return "loginSuccess";
+        return "HomePage";
+    }
+    @GetMapping("/RegistrationPage")
+    String getRegistrationPage(Model model) {
+        return "RegistrationPage";
     }
 }
