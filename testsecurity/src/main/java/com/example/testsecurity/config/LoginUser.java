@@ -12,24 +12,20 @@ public class LoginUser implements WebMvcConfigurer {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/Login", "/RegistrationPage", "/loginSuccess")
+                .antMatchers("/Login", "/RegistrationPage")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
-                .formLogin()
-                .permitAll()
-                .and()
                 .oauth2Login()
                 .loginPage("/Login")
-                .defaultSuccessUrl("/loginSuccess")
-                .failureUrl("/loginFailure");
+                .defaultSuccessUrl("/");
         return http.build();
     }
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry
-                .addResourceHandler("/templates/**")
-                .addResourceLocations("classpath:/templates/");
-    }
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        registry
+//                .addResourceHandler("/templates/**")
+//                .addResourceLocations("classpath:/templates/");
+//    }
 }
